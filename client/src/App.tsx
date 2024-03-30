@@ -1,9 +1,9 @@
 import './App.css'
-import BooksCard from './components/Cards/BooksCard'
 import NavBar from './components/Navbar/NavBar'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import { BookList } from './pages/Book/BookList'
+import BookDetails from './pages/Book/BookDetails'
 function App() {
 
   return (
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/book-list' element={<BookList />} />
-          <Route path='/book-details/:id' element={<BookList />} />
+          <Route path='/book-details/:id' element={<BookDetails />} />
         </Routes>
       </div>
     </>

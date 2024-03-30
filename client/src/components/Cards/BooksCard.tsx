@@ -1,14 +1,13 @@
+import ShowRating from "../Ratings/ShowRating"
 
-const BooksCard = () => {
+const BooksCard = ({ img }: { img: string }) => {
   return (
-    <div className="card card-compact w-96 bg-base-100 shadow-xl">
-      <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+    <div className="card hover:scale-105 duration-300 cursor-pointer shadow-lg shadow-gray-900 card-compact w-64 h-96 bg-base-100 ">
+      <figure><img src={img} alt="Books" className="h-64 w-60 rounded-md mt-2" /></figure>
       <div className="card-body">
-        <h2 className="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
-        </div>
+        <h2 className="card-title">Book Title</h2>
+        <ShowRating />
+        <p>Author Name</p>
       </div>
     </div>
   )

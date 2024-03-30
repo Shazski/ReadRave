@@ -5,6 +5,9 @@ import ReviewCard from "../../components/ReviewCard/ReviewCard"
 import AddRating from "../../components/Ratings/AddRating";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { reviewValidationSchema } from "../../validations/reviewValidation";
+import { postReview } from "../../redux/actions/book/bookActions";
+import { AppDispatch } from "../../redux/store";
+import { useDispatch } from "react-redux";
 const Modal = lazy(() => import("../../components/Modal/Modal")); //lazy loading Modal (dynamic import)
 
 const BookDetails = () => {
@@ -12,6 +15,7 @@ const BookDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [rating, setRating] = useState<number>(5)
 
+  const dispatch = useDispatch<AppDispatch>()
   //get rating data from the child component
   const getRatingFromChild = (rating: number) => {
     setRating(rating)
@@ -49,6 +53,7 @@ const BookDetails = () => {
         <Modal isModalOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <Formik initialValues={{ comment: "", rating: rating }} validationSchema={reviewValidationSchema} onSubmit={async (values) => {
             values.rating = rating
+            dispatch(postReview(values))
           }}>
             <Form>
               <h1 className="font-bold text-xl">Add Review</h1>

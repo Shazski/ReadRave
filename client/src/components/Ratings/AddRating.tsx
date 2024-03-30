@@ -1,4 +1,4 @@
-import { ErrorMessage, Field } from "formik"
+import { ErrorMessage } from "formik"
 import { ChangeEvent } from "react"
 
 const AddRating = ({ sentRatingToParent }: { sentRatingToParent: (rating: number) => void }) => {

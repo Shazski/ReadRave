@@ -2,14 +2,12 @@ import { AxiosError } from "axios";
 
 export const BASE_URL = "http://localhost:3000/api/v1"; //base url of server
 export type TODO = any; // to vanish any from code
+// custom type for api error
 export interface MyApiError {
- // custom type for api error
  message: string;
- autherisationFailed: boolean;
- userBlocked: boolean;
 }
+//configuration for headers
 export const config = {
- //config for headers
  headers: {
   "Content-Type": "application/json",
  },

@@ -8,5 +8,5 @@ export const ErrorHandler = (
 ) => {
  res
   .status(400)
-  .json({ error: err?.message ?? err ?? "Something went wrong!" });
+  .json({ message: err?.message ?? err ?? "Something went wrong!" });
 };

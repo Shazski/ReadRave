@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { loginSchema, registerSchema } from "../utils/validation";
-import { createUser, findByEmail } from "../services/user.service";
+import { createUser, findByEmail, findById } from "../services/user.service";
 import { generateJwtToken } from "../utils/jwt";
 import { IUser } from "../interfaces/IUserSchema";
 import { comparePassword } from "../utils/bcrypt";
+import { ObjectId } from "mongoose";
 
 //Register user
 //
@@ -29,13 +30,11 @@ export const register = async (
 
   res.cookie("auth_token", jwtToken);
 
-  res
-   .status(201)
-   .json({
-    success: true,
-    data: newUser,
-    message: "User registered Successfully",
-   });
+  res.status(201).json({
+   success: true,
+   data: newUser,
+   message: "User registered Successfully",
+  });
  } catch (error) {
   next(error);
  }
@@ -70,13 +69,24 @@ export const login = async (
 
   res.cookie("auth_token", jwtToken);
 
-  res
-   .status(200)
-   .json({
-    success: true,
-    data: userExists,
-    message: "User logined successfully",
-   });
+  res.status(200).json({
+   success: true,
+   data: userExists,
+   message: "User logined successfully",
+  });
+ } catch (error) {
+  next(error);
+ }
+};
+
+export const getUser = async (
+ req: Request,
+ res: Response,
+ next: NextFunction
+) => {
+ try {
+  const user = await findById(req.user?._id as ObjectId);
+  res.status(200).json({ success: true, data: user, message: "success" });
  } catch (error) {
   next(error);
  }

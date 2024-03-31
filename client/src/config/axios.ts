@@ -19,10 +19,8 @@ export const commonRequest = async (
   data: body,
   config,
  };
- console.log("🚀 ~ file: axios.ts:22 ~ requestConfig:", requestConfig);
  try {
   const { data } = await axiosInstance(requestConfig);
-  console.log(data);
   return data.data;
  } catch (error: TODO) {
   const axiosError = error as AxiosError<MyApiError>;

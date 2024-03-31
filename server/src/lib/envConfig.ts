@@ -1,5 +1,5 @@
 import { config } from "dotenv";
-config()
+config();
 
-export const PORT = process.env.PORT
-console.log("🚀 ~ file: envConfig.ts:5 ~ PORT:", PORT)
+export const PORT = process.env.PORT;
+export const TOKEN_SECRET = process.env.TOKEN_SECRET;

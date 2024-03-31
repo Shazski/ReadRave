@@ -1,10 +1,9 @@
 import express from "express";
 
 export default () => {
-    const router = express.Router();
+ const router = express.Router();
 
-    router.route("/")
+ router.route("/add-book");
 
-
-    return router;
-}
+ return router;
+};

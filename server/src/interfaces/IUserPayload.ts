@@ -1,4 +1,6 @@
+import { ObjectId } from "mongoose";
+
 export interface IUserPayload {
- _id: string;
+ _id: ObjectId;
  email: string;
 }

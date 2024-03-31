@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import { BookRouter, UserRouter } from "./routes";
 import cors from "cors";
 import { corsOptions } from "./lib/constants";
-import { ErrorHandler } from "./middleware/ErrorHandler";
+import { ErrorHandler } from "./middleware";
 import { connect } from "./repository";
 const app: Application = express();
 

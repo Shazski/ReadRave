@@ -6,14 +6,10 @@ export const connect = async () => {
   if (!MONGO_URL) {
    throw new Error("Mongodb connection url is required");
   }
-  const conn = await mongoose.connect(
-   `${MONGO_URL}`
-  );
-  console.log(`🍃 Database Established connection with MongoDB`);
-  console.log(`@-${conn.connection.host}`);
+  const conn = await mongoose.connect(`${MONGO_URL}`);
+  console.log(`Connection established with mongodb `);
  } catch (error: any) {
-  console.error(`❌ Database Connection failed`);
-  console.error(error.message);
+  console.error(`Database Connection failed`);
   process.exit(1);
  }
 };

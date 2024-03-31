@@ -11,12 +11,13 @@ import { makeErrorDisable } from './redux/reducers/user/userslice'
 import Login from './pages/Login/Login'
 import NotFound from './pages/NotFound'
 import { getUser } from './redux/actions/user/userActions'
+import { Toaster } from 'react-hot-toast'
 function App() {
 
   const { user, error } = useTypeSelector((state) => state.user)
 
   const dispatch = useTypeDispatch()
-  
+
   useEffect(() => {
     if (!user) {
       dispatch(getUser())
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <>
+      <Toaster />
       <div>
         <NavBar />
         <Routes>

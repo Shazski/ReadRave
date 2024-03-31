@@ -15,8 +15,8 @@ const BookDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [rating, setRating] = useState<number>(5)
 
-  const dispatch = useDispatch<AppDispatch>()
   //get rating data from the child component
+  const dispatch = useDispatch<AppDispatch>()
   const getRatingFromChild = (rating: number) => {
     setRating(rating)
   }

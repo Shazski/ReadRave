@@ -2,7 +2,7 @@ import { ObjectId } from "mongoose";
 
 export interface IBooks extends Document {
  _id: ObjectId;
- bookTitle: string;
+ title: string;
  author: string;
  coverimage: string | null;
  reviews: {

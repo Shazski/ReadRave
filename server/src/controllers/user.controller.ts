@@ -6,8 +6,7 @@ import { IUser } from "../interfaces/IUserSchema";
 import { comparePassword } from "../utils/bcrypt";
 import { ObjectId } from "mongoose";
 
-//Register user
-//
+
 export const register = async (
  req: Request,
  res: Response,

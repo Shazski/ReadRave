@@ -5,12 +5,12 @@ import { config } from "../../../config/constants";
 import { IReview } from "../../../Interfaces/IReview";
 
 //redux function to add book
-export const addBook = createAsyncThunk(
+export const pusblishBook = createAsyncThunk(
  "book/addBook",
  async (bookDetails: IBook, { rejectWithValue }) => {
   return commonRequest(
    "post",
-   "/add-book",
+   "book/add-book",
    config,
    rejectWithValue,
    bookDetails
@@ -23,10 +23,16 @@ export const postReview = createAsyncThunk(
  async (reviewData: IReview, { rejectWithValue }) => {
   return commonRequest(
    "patch",
-   "/add-book",
+   "book/add-book",
    config,
    rejectWithValue,
    reviewData
   );
+ }
+);
+export const getAllBooks = createAsyncThunk(
+ "book/getAllBooks",
+ async (_, { rejectWithValue }) => {
+  return commonRequest("get", "book/get-all-books", config, rejectWithValue);
  }
 );

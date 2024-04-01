@@ -30,8 +30,10 @@ export const getAllBooks = async (
  res: Response,
  next: NextFunction
 ) => {
+ const search = req.query.search;
+ const page = req.query.page;
  try {
-  const books = await getAllBooksdetails();
+  const books = await getAllBooksdetails(Number(page), String(search));
 
   if (!books) return next("No books found");
 

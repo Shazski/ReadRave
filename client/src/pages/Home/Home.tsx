@@ -1,15 +1,25 @@
 import BooksCard from "../../components/Cards/BooksCard"
 import HeroSection from "../../components/Home/HeroSection"
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import { useTypeDispatch, useTypeSelector } from "../../hooks"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { getAllBooks } from "../../redux/actions/book/bookActions"
 const Home = () => {
+
+  const [search, setSearch] = useState<string>("");
+  const [searchParams, _] = useSearchParams();
+
   const dispatch = useTypeDispatch()
   const { book } = useTypeSelector((state) => state.book)
   useEffect(() => {
-    dispatch(getAllBooks)
-  }, [])
+    const search = searchParams.get("search")
+    setSearch(search!)
+  }, [searchParams])
+
+
+  useEffect(() => {
+    dispatch(getAllBooks({ page: 1, search }))
+  }, [searchParams])
   return (
     <>
       <div>

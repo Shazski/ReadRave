@@ -41,8 +41,16 @@ export const postReview = createAsyncThunk(
 
 export const getAllBooks = createAsyncThunk(
  "book/getAllBooks",
- async (_, { rejectWithValue }) => {
-  return commonRequest("get", "book/get-all-books", config, rejectWithValue);
+ async (
+  { page, search = " " }: { page: number; search: string },
+  { rejectWithValue }
+ ) => {
+  return commonRequest(
+   "get",
+   `book/get-all-books?page=${page}&search=${search}`,
+   config,
+   rejectWithValue
+  );
  }
 );
 export const getBookById = createAsyncThunk(

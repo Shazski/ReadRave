@@ -15,18 +15,30 @@ export const createBook = async (bookDetails: IBook) => {
   return false;
  }
 };
-export const getAllBooksdetails = async () => {
+export const getAllBooksdetails = async (page: number, search: string) => {
  try {
-  const book = await Book.find().populate("reviews.userId");
+  const regex = new RegExp(search, "i");
 
-  const bookCount = await Book.find().countDocuments();
-  if (!book) return false;
+  const query = {
+   $or: [{ author: regex }, { title: regex }, { description: regex }],
+  };
 
-  return [book, bookCount];
+  const pageSize = 10;
+  const skip = (page - 1) * pageSize;
+
+  const books = await Book.find(query)
+   .populate("reviews.userId")
+   .limit(pageSize)
+   .skip(skip);
+
+  const bookCount = await Book.find(query).countDocuments();
+
+  return [books, bookCount];
  } catch (error) {
   return false;
  }
 };
+
 export const getBookById = async (id: string) => {
  try {
   const book = await Book.findById(id).populate("reviews.userId");

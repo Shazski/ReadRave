@@ -1,6 +1,6 @@
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useSearchParams } from "react-router-dom"
 import { useTypeDispatch, useTypeSelector } from "../../hooks"
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Modal from "../Modal/Modal";
 import useForm from "../../hooks/useForm";
 import { imageUpload } from "../../cloudinary/upload";
@@ -13,7 +13,9 @@ const NavBar = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>("");
   const { formData, handleChange } = useForm()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const { user } = useTypeSelector((state) => state.user)
   const dispatch = useTypeDispatch()
@@ -31,6 +33,12 @@ const NavBar = () => {
       toast.success("Book published successfully")
     }
   }
+
+  useEffect(() => {
+    searchParams.set('search', search)
+    if (search.length <= 0) return setSearchParams('')
+    setSearchParams(searchParams)
+  }, [search])
   return (
     <div className="navbar sticky top-0  z-50 flex bg-base-100 shadow-lg shadow-gray-900">
       <div className="flex-1">
@@ -46,7 +54,7 @@ const NavBar = () => {
       </div>
       <div className="flex-none gap-2 ">
         <div className="form-control">
-          <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+          <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
         </div>
 
         {
@@ -64,7 +72,7 @@ const NavBar = () => {
                   </h1>
                 </li>
                 <li><a>Settings</a></li>
-                <li onClick={() => dispatch(logout())}>Logout</li>
+                <li className="cursor-pointer" onClick={() => dispatch(logout())}>Logout</li>
               </ul>
             </div> : <>
               <Link className="btn btn-info" to={'/login'}>Login</Link>

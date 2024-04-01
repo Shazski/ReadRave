@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 
-export const BASE_URL = "http://localhost:3000/api/v1"; //base url of server
+export const BASE_URL = "https://readraveserver.onrender.com/api/v1"; //base url of server
 export type TODO = any; // to vanish any from code
 // custom type for api error
 export interface MyApiError {

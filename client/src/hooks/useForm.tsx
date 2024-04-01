@@ -1,8 +1,7 @@
 import { ChangeEvent, useState } from "react";
-import { IBook } from "../Interfaces/Ibook";
 
 const useForm = () => {
-  const [formData, setFormData] = useState<IBook>({ author: "", description: "", title: "" });
+  const [formData, setFormData] = useState<any>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.currentTarget

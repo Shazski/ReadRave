@@ -12,7 +12,7 @@ const Login = () => {
       <Formik onSubmit={async (values: IUser) => {
         dispatch(login(values))
       }}
-        initialValues={{ email: "", password: "" }} validationSchema={userLoginSchema}>
+        initialValues={{ email: "", password: ""}} validationSchema={userLoginSchema}>
         <Form className="flex flex-col gap-y-6">
           {
             error && <h1 className="text-red-600 font-semibold ">{error}</h1>

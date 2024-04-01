@@ -1,11 +1,15 @@
 import BooksCard from "../../components/Cards/BooksCard"
 import HeroSection from "../../components/Home/HeroSection"
-import Book1 from "../../assets/images/book1.jpg"
-import Book2 from "../../assets/images/book2.jpg"
-import Book3 from "../../assets/images/book3.jpg"
-import Book4 from "../../assets/images/book4.jpg"
 import { Link } from "react-router-dom"
+import { useTypeDispatch, useTypeSelector } from "../../hooks"
+import { useEffect } from "react"
+import { getAllBooks } from "../../redux/actions/book/bookActions"
 const Home = () => {
+  const dispatch = useTypeDispatch()
+  const { book } = useTypeSelector((state) => state.book)
+  useEffect(() => {
+    dispatch(getAllBooks)
+  }, [])
   return (
     <>
       <div>
@@ -16,20 +20,11 @@ const Home = () => {
         <Link to='/book-list' >View All</Link>
       </div>
       <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center mt-4">
-        <BooksCard img={Book1} />
-        <BooksCard img={Book2} />
-        <BooksCard img={Book3} />
-        <BooksCard img={Book4} />
-      </div>
-      <div className="flex justify-between px-16 mt-7">
-        <h1 className="font-serif text-white text-2xl font-semibold">Latest Books</h1>
-        <Link to='/book-list' >View All</Link>
-      </div>
-      <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center mt-4">
-        <BooksCard img={Book1} />
-        <BooksCard img={Book2} />
-        <BooksCard img={Book3} />
-        <BooksCard img={Book4} />
+        {
+          book?.slice(0, 4)?.map((book) => (
+            <BooksCard data={book} />
+          ))
+        }
       </div>
     </>
   )

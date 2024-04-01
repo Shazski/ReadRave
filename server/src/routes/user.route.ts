@@ -8,6 +8,7 @@ export default () => {
  router.route("/").get(CurrentUser, userAuth, UserController.getUser);
  router.route("/register").post(UserController.register);
  router.route("/login").post(UserController.login);
+ router.route("/logout").get(UserController.logout);
 
  return router;
 };

@@ -6,7 +6,6 @@ import { IUser } from "../interfaces/IUserSchema";
 import { comparePassword } from "../utils/bcrypt";
 import { ObjectId } from "mongoose";
 
-
 export const register = async (
  req: Request,
  res: Response,
@@ -86,6 +85,18 @@ export const getUser = async (
  try {
   const user = await findById(req.user?._id as ObjectId);
   res.status(200).json({ success: true, data: user, message: "success" });
+ } catch (error) {
+  next(error);
+ }
+};
+export const logout = async (
+ req: Request,
+ res: Response,
+ next: NextFunction
+) => {
+ try {
+  res.clearCookie("auth_token");
+  res.status(200).json({ success: true, message: "logout success" });
  } catch (error) {
   next(error);
  }

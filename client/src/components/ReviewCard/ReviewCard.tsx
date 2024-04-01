@@ -1,14 +1,15 @@
 import ShowRating from "../Ratings/ShowRating"
+import { IReview } from './../../Interfaces/IReview';
 
-const ReviewCard = () => {
+const ReviewCard = ({ reviewData }: { reviewData: IReview }) => {
   return (
     <div className="card w-56 bg-base-100 shadow-xl">
       <div className="card-body">
         <h2 className="card-title">
-          UserName
+          {reviewData.userId?.name}
         </h2>
-        <ShowRating />
-        <p>Description</p>
+        <ShowRating rating={reviewData.rating} />
+        <p>{reviewData.comment}</p>
       </div>
     </div>
   )

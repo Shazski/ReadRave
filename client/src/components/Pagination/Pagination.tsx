@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useSearchParams } from 'react-router-dom';
-const Pagination = ({ length = 30, sentToParent, page = 1 }: { length?: number, sentToParent: (n: number) => void, page?: number }) => {
+const Pagination = ({ length , sentToParent, page = 1 }: { length: number, sentToParent: (n: number) => void, page?: number }) => {
   const [currentPage, setCurrentPage] = useState<number>(page)
   const recordsPerPage = 10;
   const npage = Math.ceil(length / recordsPerPage)
@@ -37,7 +37,7 @@ const Pagination = ({ length = 30, sentToParent, page = 1 }: { length?: number, 
         <MdOutlineKeyboardArrowLeft className={`text-2xl mt-1 cursor-pointer ${currentPage === 1 ? 'hidden' : ''}`} onClick={handlePrev} />
         {
           numbers.map((n, i) => (
-            <h1 key={i} onClick={() => handleClick(n)} className={` ${currentPage === n ? 'paginationactive text-white font-semibold' : ""} cursor-pointer rounded-md px-4 py-1 `}>{n}</h1>
+            <h1 key={i} onClick={() => handleClick(n)} className={`${currentPage === n ? 'paginationactive btn text-white font-semibold' : ""} cursor-pointer rounded-md px-4 py-1 `}>{n}</h1>
           ))
         }
         <MdOutlineKeyboardArrowRight className={`text-2xl mt-1 cursor-pointer ${currentPage === npage ? 'hidden' : ''}`} onClick={handleNext} />

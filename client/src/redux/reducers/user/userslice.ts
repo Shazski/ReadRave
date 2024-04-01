@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, login, register } from "../../actions/user/userActions";
+import {
+ getUser,
+ login,
+ logout,
+ register,
+} from "../../actions/user/userActions";
 import { IUser } from "../../../Interfaces/Iuser";
 
 const userSlice = createSlice({
@@ -51,6 +56,17 @@ const userSlice = createSlice({
    .addCase(getUser.rejected, (state, { payload }) => {
     state.loading = false;
     state.user = null;
+    state.error = payload as string;
+   })
+   .addCase(logout.pending, (state) => {
+    state.loading = true;
+   })
+   .addCase(logout.fulfilled, (state) => {
+    state.loading = false;
+    state.user = null;
+   })
+   .addCase(logout.rejected, (state, { payload }) => {
+    state.loading = false;
     state.error = payload as string;
    });
  },

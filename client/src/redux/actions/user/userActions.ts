@@ -33,3 +33,9 @@ export const getUser = createAsyncThunk(
   return commonRequest("get", "/user", config, rejectWithValue);
  }
 );
+export const logout = createAsyncThunk(
+ "user/logout",
+ async (_, { rejectWithValue }) => {
+  return commonRequest("get", "/user/logout", config, rejectWithValue);
+ }
+);

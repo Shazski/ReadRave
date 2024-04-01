@@ -6,6 +6,7 @@ import useForm from "../../hooks/useForm";
 import { imageUpload } from "../../cloudinary/upload";
 import { toast } from "react-hot-toast";
 import { pusblishBook } from "../../redux/actions/book/bookActions";
+import { logout } from "../../redux/actions/user/userActions";
 
 const NavBar = () => {
 
@@ -63,7 +64,7 @@ const NavBar = () => {
                   </h1>
                 </li>
                 <li><a>Settings</a></li>
-                <li><a>Logout</a></li>
+                <li onClick={() => dispatch(logout())}>Logout</li>
               </ul>
             </div> : <>
               <Link className="btn btn-info" to={'/login'}>Login</Link>

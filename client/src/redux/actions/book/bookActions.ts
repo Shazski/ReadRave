@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IBook } from "../../../Interfaces/Ibook";
 import { commonRequest } from "../../../config/axios";
 import { config } from "../../../config/constants";
-import { IReview } from "../../../Interfaces/IReview";
 
 //redux function to add book
 export const pusblishBook = createAsyncThunk(
@@ -20,19 +19,40 @@ export const pusblishBook = createAsyncThunk(
 //redux function to post review of users
 export const postReview = createAsyncThunk(
  "book/postReview",
- async (reviewData: IReview, { rejectWithValue }) => {
+ async (
+  {
+   reviewData,
+   id,
+  }: {
+   reviewData: { userId: string; rating: number; comment: string };
+   id?: string;
+  },
+  { rejectWithValue }
+ ) => {
   return commonRequest(
    "patch",
-   "book/add-book",
+   `book/post-review/${id}`,
    config,
    rejectWithValue,
    reviewData
   );
  }
 );
+
 export const getAllBooks = createAsyncThunk(
  "book/getAllBooks",
  async (_, { rejectWithValue }) => {
   return commonRequest("get", "book/get-all-books", config, rejectWithValue);
+ }
+);
+export const getBookById = createAsyncThunk(
+ "book/getBookById",
+ async (id: string, { rejectWithValue }) => {
+  return commonRequest(
+   "get",
+   `book/get-book-details/${id}`,
+   config,
+   rejectWithValue
+  );
  }
 );

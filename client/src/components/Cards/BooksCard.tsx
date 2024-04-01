@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import ShowRating from "../Ratings/ShowRating"
 import { IBook } from "../../Interfaces/Ibook"
 
 const BooksCard = ({ data }: { data: IBook }) => {
@@ -9,7 +8,6 @@ const BooksCard = ({ data }: { data: IBook }) => {
       <figure><img src={data?.coverimage} alt="Books" className="h-64 w-60 rounded-md mt-2" /></figure>
       <div className="card-body">
         <h2 className="card-title">{data?.title}</h2>
-        <ShowRating rating={2}/>
         <p>{data?.author}</p>
       </div>
     </div>

@@ -20,6 +20,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getAllBooks({ page: 1, search }))
   }, [searchParams])
+
   return (
     <>
       <div>

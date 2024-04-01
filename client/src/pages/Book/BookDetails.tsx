@@ -29,7 +29,7 @@ const BookDetails = () => {
   const getRatingFromChild = (rating: number) => {
     setRating(rating)
   }
-
+  const avgRating = bookDetails?.reviews?.reduce((acc, review) => acc + review.rating, 0);
 
   return (
     <>
@@ -38,8 +38,7 @@ const BookDetails = () => {
         <div>
           <h1 className="text-white text-2xl ">{bookDetails?.title}</h1>
           <div className="mt-2 flex gap-x-3">
-            <ShowRating rating={2} />
-            <h1>4.0</h1>
+            <ShowRating rating={Number(avgRating)} />
           </div>
           <div>
             <h1 className="text-lg">{bookDetails?.author} </h1>

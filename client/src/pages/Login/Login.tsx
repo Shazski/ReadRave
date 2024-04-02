@@ -36,8 +36,8 @@ const Login = () => {
           </div>
           <button type="submit" className="btn btn-accent">Submit</button>
         </Form>
-        <h1 className="text-accent">Dont have an account? <Link className="cursor-pointer" to={'/register'}>  Register</Link> </h1>
       </Formik>
+        <h1 className="text-accent">Dont have an account? <Link className="cursor-pointer" to={'/register'}>  Register</Link> </h1>
     </div >
   )
 }
